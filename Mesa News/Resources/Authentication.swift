@@ -20,17 +20,23 @@ func getToken() -> String {
 
 func authenticateUser(email: String, password: String) {
     
-//    let params: [String: [String]] = [
-//        "email": ["\(email)"],
-//        "password": ["\(password)"]
-//    ]
-//    let headers = ["Content-Type": "application/json"]
+    let params: [String: String] = [
+        "email": email,
+        "password": password
+    ]
+    let headers = ["Content-Type": "application/json"]
     
     print(email, password)
     
-//    Alamofire.request("\(baseURL)/v1/client/auth/signin", method: .post, parameters: params, headers: headers).response {
-//            response in debugPrint(response)
-//    }
+    Alamofire.request("\(baseURL)/v1/client/auth/signin", method: .post, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON {
+        response in
+        guard response.result.isSuccess,
+              let value = response.result.value as? [String: String] else {
+            print("Deu errado")
+            return
+        }
+        setToken(token: value["token"]!)
+    }
 }
 
 func signUpToNews(name: String, password: String, email: String) {
@@ -43,10 +49,16 @@ func signUpToNews(name: String, password: String, email: String) {
     let headers = ["Content-Type": "application/json"]
 
     Alamofire.request("\(baseURL)/v1/client/auth/signup", method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON {
-            response in
+        response in
+        guard response.result.isSuccess,
+              let value = response.result.value as? [String: String] else {
+                    print(response.result)
+                    return
+                }
+                setToken(token: value["token"]!)
         }
-    }
     
 }
+    
     
 
