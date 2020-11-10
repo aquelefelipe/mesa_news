@@ -16,10 +16,12 @@
 		136D44D125583D9300AEE860 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 136D44CF25583D9300AEE860 /* LaunchScreen.storyboard */; };
 		136D44DC25583D9300AEE860 /* Mesa_NewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D44DB25583D9300AEE860 /* Mesa_NewsTests.swift */; };
 		136D44E725583D9300AEE860 /* Mesa_NewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D44E625583D9300AEE860 /* Mesa_NewsUITests.swift */; };
-		136D45152558504600AEE860 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D45142558504600AEE860 /* News.swift */; };
 		136D451A255851A400AEE860 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D4519255851A400AEE860 /* Authentication.swift */; };
 		136D452D2558870400AEE860 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D452C2558870400AEE860 /* LoginViewController.swift */; };
 		136D453525588AE400AEE860 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D453425588AE400AEE860 /* SignUpViewController.swift */; };
+		136D453A2558CF6F00AEE860 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D45392558CF6F00AEE860 /* FeedViewController.swift */; };
+		136D4547255A20D000AEE860 /* HighlightsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D4546255A20D000AEE860 /* HighlightsCollectionViewCell.swift */; };
+		136D454C255A21BE00AEE860 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D454B255A21BE00AEE860 /* News.swift */; };
 		379CEEC9559585F13B92C7A3 /* Pods_Mesa_NewsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A1CB3FBD37E900FCC5AC32 /* Pods_Mesa_NewsTests.framework */; };
 		721416CD943839A9B10A9360 /* Pods_Mesa_News_Mesa_NewsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F56AB38EF054FC4DA288873 /* Pods_Mesa_News_Mesa_NewsUITests.framework */; };
 		F6149FB10D6EB260B1FF67BF /* Pods_Mesa_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A005A2B9A0919A811604CFB9 /* Pods_Mesa_News.framework */; };
@@ -59,10 +61,12 @@
 		136D44E225583D9300AEE860 /* Mesa NewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mesa NewsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		136D44E625583D9300AEE860 /* Mesa_NewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesa_NewsUITests.swift; sourceTree = "<group>"; };
 		136D44E825583D9300AEE860 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		136D45142558504600AEE860 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		136D4519255851A400AEE860 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		136D452C2558870400AEE860 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		136D453425588AE400AEE860 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		136D45392558CF6F00AEE860 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		136D4546255A20D000AEE860 /* HighlightsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsCollectionViewCell.swift; sourceTree = "<group>"; };
+		136D454B255A21BE00AEE860 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		199B875CDEBD34AF27FFBD34 /* Pods-Mesa News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mesa News.release.xcconfig"; path = "Target Support Files/Pods-Mesa News/Pods-Mesa News.release.xcconfig"; sourceTree = "<group>"; };
 		1F56AB38EF054FC4DA288873 /* Pods_Mesa_News_Mesa_NewsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mesa_News_Mesa_NewsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB328AD9C86684266B7A9EA /* Pods-Mesa NewsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mesa NewsTests.debug.xcconfig"; path = "Target Support Files/Pods-Mesa NewsTests/Pods-Mesa NewsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -176,7 +180,7 @@
 		136D450825584ED300AEE860 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				136D45142558504600AEE860 /* News.swift */,
+				136D454B255A21BE00AEE860 /* News.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,6 +191,8 @@
 				136D44C525583D9000AEE860 /* ViewController.swift */,
 				136D452C2558870400AEE860 /* LoginViewController.swift */,
 				136D453425588AE400AEE860 /* SignUpViewController.swift */,
+				136D45392558CF6F00AEE860 /* FeedViewController.swift */,
+				136D4546255A20D000AEE860 /* HighlightsCollectionViewCell.swift */,
 			);
 			path = Controlers;
 			sourceTree = "<group>";
@@ -462,13 +468,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				136D452D2558870400AEE860 /* LoginViewController.swift in Sources */,
+				136D453A2558CF6F00AEE860 /* FeedViewController.swift in Sources */,
 				136D44CC25583D9000AEE860 /* Mesa_News.xcdatamodeld in Sources */,
 				136D453525588AE400AEE860 /* SignUpViewController.swift in Sources */,
 				136D44C625583D9000AEE860 /* ViewController.swift in Sources */,
 				136D44C225583D9000AEE860 /* AppDelegate.swift in Sources */,
-				136D45152558504600AEE860 /* News.swift in Sources */,
 				136D44C425583D9000AEE860 /* SceneDelegate.swift in Sources */,
+				136D454C255A21BE00AEE860 /* News.swift in Sources */,
 				136D451A255851A400AEE860 /* Authentication.swift in Sources */,
+				136D4547255A20D000AEE860 /* HighlightsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

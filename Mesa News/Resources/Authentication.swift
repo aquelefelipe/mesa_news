@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 let baseURL = "https://mesa-news-api.herokuapp.com"
 let token_key = "@TOKEN_KEY"
@@ -37,6 +38,7 @@ func authenticateUser(email: String, password: String) {
         }
         setToken(token: value["token"]!)
     }
+   
 }
 
 func signUpToNews(name: String, password: String, email: String) {

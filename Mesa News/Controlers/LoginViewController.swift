@@ -21,9 +21,15 @@ class LoginViewController: UIViewController {
     
     @IBAction func doLogin(_ sender: Any) {
         authenticateUser(email: email.text!, password: password.text!)
+        
+        let token = getToken()
+        if !token.isEmpty {
+            performSegue(withIdentifier: "loginToFeed", sender: self)
+        }
     }
     
     @IBAction func goToSignUp(_ sender: Any) {
+        performSegue(withIdentifier: "goToSignUp", sender:  self)
     }
     /*
     // MARK: - Navigation
