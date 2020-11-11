@@ -12,6 +12,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,22 +21,18 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func doSignUp(_ sender: Any) {
-        signUpToNews(name: name.text!, password: password.text!, email: email.text!)
-    }
-    
-    @IBAction func cancelSignUp(_ sender: Any) {
+        if password.text != confirmPassword.text {
+            let alert = UIAlertController(title: "Error", message: "The passwords are differents", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            signUpToNews(name: name.text!, password: password.text!, email: email.text!)
+        }
         
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func cancelSignUp(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
-    */
 
 }
