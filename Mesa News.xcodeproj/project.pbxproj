@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		134B3F2A255B579000F93C97 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134B3F29255B579000F93C97 /* NewsData.swift */; };
 		136D44C225583D9000AEE860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D44C125583D9000AEE860 /* AppDelegate.swift */; };
 		136D44C425583D9000AEE860 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D44C325583D9000AEE860 /* SceneDelegate.swift */; };
 		136D44C625583D9000AEE860 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136D44C525583D9000AEE860 /* ViewController.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		03A1CB3FBD37E900FCC5AC32 /* Pods_Mesa_NewsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mesa_NewsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		134B3F29255B579000F93C97 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		136D44BE25583D9000AEE860 /* Mesa News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mesa News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		136D44C125583D9000AEE860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		136D44C325583D9000AEE860 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				136D454B255A21BE00AEE860 /* News.swift */,
+				134B3F29255B579000F93C97 /* NewsData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				136D453525588AE400AEE860 /* SignUpViewController.swift in Sources */,
 				136D44C625583D9000AEE860 /* ViewController.swift in Sources */,
 				136D44C225583D9000AEE860 /* AppDelegate.swift in Sources */,
+				134B3F2A255B579000F93C97 /* NewsData.swift in Sources */,
 				136D44C425583D9000AEE860 /* SceneDelegate.swift in Sources */,
 				136D454C255A21BE00AEE860 /* News.swift in Sources */,
 				136D451A255851A400AEE860 /* Authentication.swift in Sources */,

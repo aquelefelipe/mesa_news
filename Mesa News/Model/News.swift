@@ -32,19 +32,29 @@ class News {
         self.image_url = image_url
     }
     
-    static func getNews(token: String) {
+    static func getNews(token: String, completion: @escaping ([NewsModel]?) -> Void) {
         
         let headers = ["Content-Type": "application/json", "Authorization": "Bearer \(token)"]
         Alamofire.request("\(baseURL)/v1/client/news?current_page=&per_page=&published_at=", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON {
             response in
             
-            guard response.result.isSuccess,
-                  let value = response.result.value as? [String: Any] else {
-                print("deu errado")
+            guard response.result.isSuccess else {
+                print("Deu error no requisição")
                 return
             }
             
-            print("VALUE", value["data"]!)
+            guard let data = response.data else { return }
+            do {
+                let decoder = JSONDecoder()
+                let newsData = try decoder.decode(NewsData.self, from: data)
+//                print("NEWS DATA", newsData.data)
+                completion(newsData.data)
+            } catch let error {
+                print("deu ruim no parse do JSON: \(error)")
+                completion(nil)
+            }
+            
+//            print("VALUE", value["data"]!)
             
         }
         

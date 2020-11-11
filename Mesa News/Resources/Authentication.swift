@@ -19,7 +19,11 @@ func getToken() -> String {
     return token
 }
 
-func authenticateUser(email: String, password: String) {
+struct AuthenticationToken: Codable {
+    let token: String
+}
+
+func authenticateUser(email: String, password: String, completion: @escaping () -> Void) {
     
     let params: [String: String] = [
         "email": email,
@@ -31,12 +35,22 @@ func authenticateUser(email: String, password: String) {
     
     Alamofire.request("\(baseURL)/v1/client/auth/signin", method: .post, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON {
         response in
-        guard response.result.isSuccess,
-              let value = response.result.value as? [String: String] else {
+        guard response.result.isSuccess else {
             print("Deu errado")
             return
         }
-        setToken(token: value["token"]!)
+        
+        guard let data = response.data else { return }
+        do {
+            let decoder = JSONDecoder()
+            let token = try decoder.decode(AuthenticationToken.self, from: data)
+            print("TOKEN", token.token)
+            setToken(token: token.token)
+            completion()
+        } catch let error {
+            print("Deu errado no parse do JSON: \(error)")
+            completion()
+        }
     }
    
 }
