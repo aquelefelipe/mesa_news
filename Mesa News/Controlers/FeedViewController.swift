@@ -9,82 +9,66 @@ import UIKit
 
 class FeedViewController: UIViewController, UICollectionViewDelegate {
     
-    @IBOutlet weak var highlightsNewsCollection: UICollectionView!
+    @IBOutlet weak var newsTableView: UITableView!
     
     var newsContent: [NewsModel] = []
-    var cellScale: CGFloat = 1
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        self.newsTableView.isHidden = true
+        
         News.getNews(token: getToken(), completion: { newsData in
             if let new = newsData {
-                print("NEWS", new[1].content)
+                
                 self.newsContent.append(contentsOf: new)
+                self.newsTableView.reloadData()
+                DispatchQueue.main.async{
+                    self.activityIndicator.stopAnimating()
+                    self.newsTableView.isHidden = false
+                }
+                
             }
         })
         
-        let screenSize = UIScreen.main.bounds.size
-        let cellWidth = floor(screenSize.width * cellScale) / 2
-        let cellHeight = floor(screenSize.height * cellScale) / 2
-        let instX = ( view.bounds.width - cellWidth ) / 2.0
-        let instY = ( view.bounds.height - cellHeight ) / 2.0
-        let layout = highlightsNewsCollection!.collectionViewLayout as! UICollectionViewFlowLayout
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
         
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        highlightsNewsCollection.contentInset = UIEdgeInsets(top: instY, left: instX, bottom: instY, right: instX)
-        highlightsNewsCollection.dataSource = self
-        highlightsNewsCollection.delegate = self
     }
 }
 
-extension FeedViewController : UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsContent.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "highlightCell", for: indexPath) as! HighlightsCollectionViewCell
-        let news = newsContent[indexPath.item]
-        cell.titleNews.text = news.title
-        cell.authorNews.text = news.author
-        cell.descriptionNews.text = news.datumDescription
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let news = newsContent[indexPath.row]
+        
+        print("NEWS \(indexPath.row)", news)
+        
+        let cell = newsTableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsTableViewCell
         
         let url = URL(string: news.imageURL)
-        let data = try? Data(contentsOf: url!)
+        guard let data = try? Data(contentsOf: url!) else { return UITableViewCell()}
         
-        cell.imageNews.image = UIImage(data: data!)
-        
-        cell.layer.borderWidth = 1
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowRadius = 2.0
-        cell.layer.cornerRadius = 10
-        cell.layer.borderColor = UIColor.lightGray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 2.0, height: 4.0)
-        cell.layer.shadowRadius = 2.0
+        cell.newsImageView.image = UIImage(data: data)
+        cell.newsTitleLableView.text = news.title
+        cell.newsDescriptionText.text = news.datumDescription
         
         return cell
         
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
+    
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let cell: HighlightsCollectionViewCell = Bundle.main.loadNibNamed("CollectioViewCell",
-                                                                      owner: self,
-                                                                      options: nil)?.first as? HighlightsCollectionViewCell else {
-            return CGSize.zero
-        }
-//        cell.configureCell(name: names[indexPath.row])
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        let size: CGSize = cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        return CGSize(width: size.width, height: 30)
-    }
-}
